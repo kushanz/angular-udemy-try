@@ -9,14 +9,14 @@ private url = 'https://jsonplaceholder.typicode.com/posts'
 allPosts() {
   return this.http.get<Post[]>(this.url)
 }
-createPost(post:Post) {
+createPost(post:any) {
   return this.http.post(this.url,JSON.stringify(post))
 }
 updatePost(post:Post) {
-  this.http.patch(this.url + '/' + post.id,JSON.stringify(post))
+  return this.http.patch(this.url + '/' + post.id,JSON.stringify(post))
 }
 deletePost(post: Post) {
-  this.http.delete(this.url+ '/' +post.id)
+  return this.http.delete(this.url+ '/' +post.id)
 }
 
 }

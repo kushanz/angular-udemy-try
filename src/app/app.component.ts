@@ -22,14 +22,14 @@ export class AppComponent implements OnInit  {
   createPost(input:HTMLInputElement) {
     let post = {title: input.value}
     input.value = '';
-    this.service.createPost(post).subscribe((response) => {
+    this.service.createPost(post).subscribe((response: Post) => {
       post['id'] = response.id
       this.posts.splice(0, 0, post);
       console.log(response)
     })
   }
   updatePost(post) {
-    this.service.updatePost().subscribe(response => {
+    this.service.updatePost(post).subscribe(response => {
       console.log(response)
     })
   }
