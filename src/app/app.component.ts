@@ -21,8 +21,23 @@ export class AppComponent implements OnInit  {
   }
   createPost(input:HTMLInputElement) {
     let post = {title: input.value}
-    this.http.post(this.url,JSON.stringify(post)).subscribe(response => {
+    input.value = '';
+    this.http.post(this.url,JSON.stringify(post)).subscribe((response:Post) => {
+      post['id'] = response.id
+      this.posts.splice(0, 0, post);
       console.log(response)
+    })
+  }
+  updatePost(post) {
+    this.http.patch(this.url + '/' + post.id,JSON.stringify(post))
+    .subscribe(response => {
+      console.log(response)
+    })
+  }
+  deletePost(post) {
+    this.http.delete(this.url+ '/' +post.id).subscribe(response => {
+      let index = this.posts.indexOf(post)
+      this.posts.splice(index, 1)
     })
   }
 }
