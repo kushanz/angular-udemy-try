@@ -17,6 +17,8 @@ export class AppComponent implements OnInit  {
   ngOnInit() {
     this.service.allPosts().subscribe(response => {
       this.posts =  response;
+    },error => {
+      alert('error loading data')
     })
   }
   createPost(input:HTMLInputElement) {
@@ -37,6 +39,10 @@ export class AppComponent implements OnInit  {
     this.service.deletePost(post).subscribe(response => {
       let index = this.posts.indexOf(post)
       this.posts.splice(index, 1)
+    },(error: Response) => {
+      if(error.status === 404) {
+        console.log('post already deleted :( ')
+      }
     })
   }
 }
