@@ -1,5 +1,5 @@
 <div class="container">
-  <input name="inputpost" type="" class="form-control">
+  <input (keyup.enter)="createPost(title)" #title name="inputpost" type="" class="form-control">
   <hr>
   <ul class="list-group">
     <li *ngFor="let post of posts" class="list-group-item">

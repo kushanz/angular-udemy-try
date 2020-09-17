@@ -19,6 +19,12 @@ export class AppComponent implements OnInit  {
       this.posts =  response;
     })
   }
+  createPost(input:HTMLInputElement) {
+    let post = {title: input.value}
+    this.http.post(this.url,JSON.stringify(post)).subscribe(response => {
+      console.log(response)
+    })
+  }
 }
 
 export class Post {
