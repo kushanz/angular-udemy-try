@@ -36,7 +36,7 @@ export class AppComponent implements OnInit  {
     })
   }
   deletePost(post) {
-    this.service.deletePost(post).subscribe(response => {
+    this.service.deletePost(post.id).subscribe(response => {
       let index = this.posts.indexOf(post)
       this.posts.splice(index, 1)
     },(error: Response) => {
